@@ -15,10 +15,10 @@ data_union['Year'] = pandas.to_datetime(data_union['OrderDate']).dt.year
 grouped_data = data_union.groupby(["Item", "Year"]).size().sort_values(ascending=False)
 
 # Save the output to a parquet file
-# grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
+grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
 
 outputs = {
-    'SoldItemsPerYear': grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
+    'outputFiles': open("data/output/SoldItemsPerYear.parquet", "a")
 }
 
 Kestra.outputs(outputs)
