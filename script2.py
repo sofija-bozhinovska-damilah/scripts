@@ -2,7 +2,7 @@ import pandas as pd
 from kestra import Kestra
 
 # Read the parquet file into a DataFrame
-df = pd.read_parquet('data/output/SoldItemsPerYear.parquet')
+df = pd.read_parquet('SoldItemsPerYear.parquet')
 
 # Group by year and find the most sold product for each year
 most_sold_products = df.groupby('Year')['Item'].agg(lambda x: x.value_counts().idxmax())
