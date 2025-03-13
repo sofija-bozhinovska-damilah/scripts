@@ -1,4 +1,5 @@
 import pandas
+from kestra import Kestra
 
 data2019 = pandas.read_csv("data/2019.csv")
 data2020 = pandas.read_csv("data/2020.csv")
@@ -14,5 +15,10 @@ data_union['Year'] = pandas.to_datetime(data_union['OrderDate']).dt.year
 grouped_data = data_union.groupby(["Item", "Year"]).size().sort_values(ascending=False)
 
 # Save the output to a parquet file
-grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
+# grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
 
+outputs = {
+    'SoldItemsPerYear': grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
+}
+
+Kestra.outputs(outputs)
