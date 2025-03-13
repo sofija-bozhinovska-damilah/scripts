@@ -10,8 +10,8 @@ most_sold_products = df.groupby('Year')['Item'].agg(lambda x: x.value_counts().i
 # Save the output to a parquet file
 most_sold_products.to_frame(name='MostSoldProduct').to_parquet('data/output/MostSoldProductsPerYear.parquet')
 
-outputs = {
-    'MostSoldProductsPerYear': most_sold_products
-}
+# outputs = {
+#     'MostSoldProductsPerYear': most_sold_products
+# }
 
-Kestra.outputs(outputs)
+# Kestra.outputs(outputs)

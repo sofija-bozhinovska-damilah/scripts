@@ -17,8 +17,6 @@ grouped_data = data_union.groupby(["Item", "Year"]).size().sort_values(ascending
 # # Save the output to a parquet file
 grouped_data.to_frame(name='Count').reset_index().to_parquet("data/output/SoldItemsPerYear.parquet")
 
-outputs = {
-    'SoldItemsPerYear': grouped_data
-}
+# outputs = {"outputFiles": open("data/output/SoldItemsPerYear.parquet", "a")}
 
-Kestra.outputs(outputs)
+# Kestra.outputs(open("data/output/SoldItemsPerYear.parquet", "a"))
