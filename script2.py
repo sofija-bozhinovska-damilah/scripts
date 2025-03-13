@@ -8,7 +8,7 @@ df = pd.read_parquet('data/output/SoldItemsPerYear.parquet')
 most_sold_products = df.groupby('Year')['Item'].agg(lambda x: x.value_counts().idxmax())
 
 # Save the output to a parquet file
-most_sold_products.to_frame(name='MostSoldProduct').to_parquet('data/output/MostSoldProductsPerYear.parquet')
+most_sold_products.to_frame(name='MostSoldProduct').to_parquet('MostSoldProductsPerYear.parquet')
 
 # outputs = {
 #     'MostSoldProductsPerYear': most_sold_products
